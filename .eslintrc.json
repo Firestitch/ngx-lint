@@ -187,7 +187,6 @@
 
               "public-abstract-field",
               "protected-abstract-field",
-              "private-abstract-field",
 
               "public-constructor",
               "protected-constructor",
@@ -202,8 +201,7 @@
               "private-method",
 
               "public-abstract-method",
-              "protected-abstract-method",
-              "private-abstract-method"
+              "protected-abstract-method"
             ]
           }
         ],

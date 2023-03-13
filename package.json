@@ -2,7 +2,7 @@
   "name": "@firestitch/lint",
   "title": "Lint",
   "description": "@firestitch/ngx-lint",  
-  "version": "12.0.13",
+  "version": "12.0.15",
   "license": "MIT",
   "scripts": {
     "package:publish": "npm publish --access=public"
