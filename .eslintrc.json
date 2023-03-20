@@ -14,7 +14,6 @@
       ],
       "plugins": [
         "eslint-plugin-import",
-        "eslint-plugin-jest",
         "eslint-plugin-lodash",
         "eslint-plugin-no-null",
         "eslint-plugin-unicorn",
@@ -304,7 +303,6 @@
           }
         ],
         "indent": ["error", 2, { "SwitchCase": 1 }],
-        "jest/no-focused-tests": "error",
         "lodash/chaining": [
           "error",
           "never"
