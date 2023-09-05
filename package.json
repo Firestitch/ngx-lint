@@ -2,7 +2,7 @@
   "name": "@firestitch/lint",
   "title": "Lint",
   "description": "@firestitch/ngx-lint",  
-  "version": "12.0.17",
+  "version": "12.0.18",
   "license": "MIT",
   "scripts": {
     "package:publish": "npm publish --access=public"
@@ -24,6 +24,7 @@
     "eslint-plugin-rxjs": "3.3.7",
     "eslint-plugin-unicorn": "36.0.0",
     "tslint-microsoft-contrib": "^4.0.1",
-    "@types/eslint": "7.28.0"
+    "@types/eslint": "7.28.0",
+    "aria-query": "^4.2.2"
   }
 }
