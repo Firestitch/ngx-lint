@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "extends": [
+    "./.eslintrc.json"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "style": "kebab-case",
+            "type": ["element", "attribute"]
+          }
+        ]
+      }      
+    }
+  ]
+}
