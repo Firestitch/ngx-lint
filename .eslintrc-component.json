@@ -19,6 +19,13 @@
             "style": "kebab-case",
             "type": ["element", "attribute"]
           }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "style": "camelCase",
+            "type": "attribute"
+          }
         ]
       }      
     }
