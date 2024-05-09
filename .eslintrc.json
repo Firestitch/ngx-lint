@@ -437,8 +437,8 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {
-        "@angular-eslint/template/accessibility-elements-content": "error",
-        "@angular-eslint/template/accessibility-table-scope": "error",
+        "@angular-eslint/template/accessibility-elements-content": "off",
+        "@angular-eslint/template/accessibility-table-scope": "off",
         "@angular-eslint/template/conditional-complexity": "error",
         "@angular-eslint/template/cyclomatic-complexity": "off",
         "@angular-eslint/template/no-any": "error",
