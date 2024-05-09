@@ -2,17 +2,17 @@
   "name": "@firestitch/lint",
   "title": "Lint",
   "description": "@firestitch/ngx-lint",
-  "version": "13.0.9",
+  "version": "14.0.6",
   "license": "MIT",
   "scripts": {
     "package:publish": "npm publish --access=public"
   },
   "dependencies": {
-    "@angular-eslint/builder": "^13.0.0",
-    "@angular-eslint/eslint-plugin": "^13.0.0",
-    "@angular-eslint/eslint-plugin-template": "^13.0.0",
-    "@angular-eslint/schematics": "^13.0.0",
-    "@angular-eslint/template-parser": "^13.0.0",
+    "@angular-eslint/builder": "^17.4.0",
+    "@angular-eslint/eslint-plugin": "^17.4.0",
+    "@angular-eslint/eslint-plugin-template": "^17.4.0",
+    "@angular-eslint/schematics": "^17.4.0",
+    "@angular-eslint/template-parser": "^17.4.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
     "eslint": "^8.35.0",
