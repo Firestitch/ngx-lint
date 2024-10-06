@@ -16,7 +16,6 @@
       ],
       "plugins": [
         "eslint-plugin-import",
-        "eslint-plugin-jest",
         "eslint-plugin-lodash",
         "eslint-plugin-no-null",
         "eslint-plugin-unicorn",
