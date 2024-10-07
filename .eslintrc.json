@@ -83,15 +83,6 @@
           }
         ],
         "@typescript-eslint/await-thenable": "error",
-        "@typescript-eslint/ban-types": [
-          "error",
-          {
-            "types": {
-              "String": null,
-              "Array": null
-            }
-          }
-        ],
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/dot-notation": "off",
         "@typescript-eslint/explicit-member-accessibility": [
@@ -162,13 +153,6 @@
           "parameter": true,
           "propertyDeclaration": true
         }],
-        "@typescript-eslint/quotes": [
-          "error",
-          "single",
-          {
-            "avoidEscape": true
-          }
-        ],
         "@typescript-eslint/require-await": "error",
         "@typescript-eslint/restrict-plus-operands": "error",
         "@typescript-eslint/strict-boolean-expressions": "off",
@@ -295,7 +279,6 @@
           }
         ],
         "indent": ["error", 2, { "SwitchCase": 1 }],
-        "jest/no-focused-tests": "error",
         "lodash/chaining": [
           "error",
           "never"
