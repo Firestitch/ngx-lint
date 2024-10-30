@@ -130,9 +130,9 @@ function formatInterpolation(text, indent) {
   const regex = /{{\s*(.*?)\s*}}/g;
 
   const result = text.replace(regex, (_fullMatch, content) => {
-    // Explicitly build with spaces
+    // Explicitly build with spaces and indent
     const trimmedContent = content.trim();
-    return '{{ ' + trimmedContent + ' }}';  // Note the explicit space after {{ and before }}
+    return indent + '{{ ' + trimmedContent + ' }}';  // Note the explicit space after {{ and before }}
   });
 
   return result;
@@ -238,8 +238,9 @@ function formatElement(node, indent = '') {
   const elementHasContent = hasContent(children);
   const hasSingleAttr = hasAttributes && attrs.length === 1;
 
-  // Elements with single attribute stay on one line
-  const shouldBeSingleLine = !elementHasContent && hasSingleAttr;
+  // Elements with single or no attributes AND no content should be on one line
+  const shouldBeSingleLine = !elementHasContent && (hasSingleAttr || !hasAttributes);
+
 
   let result = `${indent}<${name}`;
 

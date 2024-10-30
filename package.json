@@ -2,7 +2,7 @@
   "name": "@firestitch/lint",
   "title": "Lint",
   "description": "@firestitch/ngx-lint",
-  "version": "18.0.15",
+  "version": "18.0.17",
   "license": "MIT",
   "dependencies": {
     "@angular-eslint/builder": "^18.3.1",
@@ -24,5 +24,8 @@
   },
   "devDependencies": {
     "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "postinstall": "node ./scripts/post-install.js"
   }
 }
