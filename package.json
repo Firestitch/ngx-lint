@@ -2,11 +2,8 @@
   "name": "@firestitch/lint",
   "title": "Lint",
   "description": "@firestitch/ngx-lint",
-  "version": "18.0.4",
+  "version": "18.0.15",
   "license": "MIT",
-  "scripts": {
-    "package:publish": "npm publish --access=public"
-  },
   "dependencies": {
     "@angular-eslint/builder": "^18.3.1",
     "@angular-eslint/eslint-plugin": "^18.3.1",
@@ -22,6 +19,10 @@
     "eslint-plugin-no-null": "^1.0.2",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-rxjs": "^5.0.2",
-    "eslint-plugin-unicorn": "^46.0.0"
+    "eslint-plugin-unicorn": "^46.0.0",
+    "prettier": "^3.3.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
   }
 }
