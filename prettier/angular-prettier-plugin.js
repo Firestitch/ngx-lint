@@ -41,7 +41,7 @@ function isControlFlowDirective(text) {
 // Identifies chained control flow statements that should be on the same line as closing brace
 // Example: } @else if (condition) {
 function isIfChainDirective(text) {
-  return /^@(else if|else)\b/m.test(text.replace(/\s+/g, ' ').trim());
+  return /^@(else if|else|placeholder|loading|error)\b/m.test(text.replace(/\s+/g, ' ').trim());
 }
 
 // Detects Angular interpolation syntax
@@ -300,12 +300,18 @@ function formatElement(node, indent = '') {
 
           // Handle control flow blocks with proper nesting
           if (isControlFlowDirective(value)) {
+            // Use same strategy as formatRoot
+            const currentIndent = nestedBlockStack.length > 0
+              ? nestedBlockStack[nestedBlockStack.length - 1].contentIndent
+              : childBaseIndent;
+
             const block = {
               directive: value,
-              indent: childBaseIndent,
-              contentIndent: childBaseIndent + '  '
+              indent: currentIndent,
+              contentIndent: currentIndent + '  '
             };
-            childResults.push(formatControlFlow(part, block.indent));
+
+            childResults.push(formatControlFlow(part, currentIndent));
             nestedBlockStack.push(block);
           } else if (value === '}' && nestedBlockStack.length > 0) {
             const block = nestedBlockStack.pop();
@@ -315,6 +321,7 @@ function formatElement(node, indent = '') {
               childResults.push(`${block.indent}} ${chainedDirective}`);
               j++;
 
+              // Use same indentation strategy for all chain blocks
               nestedBlockStack.push({
                 directive: nextPart.value,
                 indent: block.indent,
@@ -392,7 +399,7 @@ function formatRoot(nodes, baseIndent = '') {
               blockStack.push({
                 directive: nextNode.value,
                 indent: block.indent,
-                contentIndent: block.indent + '  '
+                contentIndent: block.indent + '  '  // Maintain same content indent as parent
               });
             } else {
               result.push(`${block.indent}}`);
@@ -400,7 +407,11 @@ function formatRoot(nodes, baseIndent = '') {
           }
         } else if (isControlFlowDirective(value)) {
           // Start new control flow block
-          const currentIndent = blockStack.length > 0 ? blockStack[blockStack.length - 1].indent : indent;
+          // Use the same strategy as formatElement
+          const currentIndent = blockStack.length > 0
+            ? blockStack[blockStack.length - 1].contentIndent
+            : indent;
+
           const block = {
             directive: value,
             indent: currentIndent,

@@ -2,7 +2,7 @@
   "name": "@firestitch/lint",
   "title": "Lint",
   "description": "@firestitch/ngx-lint",
-  "version": "18.0.17",
+  "version": "18.0.18",
   "license": "MIT",
   "dependencies": {
     "@angular-eslint/builder": "^18.3.1",
