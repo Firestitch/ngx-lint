@@ -129,13 +129,21 @@ function formatInterpolation(text, indent) {
   // Split the pattern into explicit parts to ensure spaces
   const regex = /{{\s*(.*?)\s*}}/g;
 
-  const result = text.replace(regex, (_fullMatch, content) => {
+  const result = text.replace(regex, (_fullMatch, content, offset, str) => {
     // Explicitly build with spaces and indent
     const trimmedContent = content.trim();
-    return indent + '{{ ' + trimmedContent + ' }}';  // Note the explicit space after {{ and before }}
+    const formatted = '{{ ' + trimmedContent + ' }}'; // Note the explicit space after {{ and before }}
+
+    // If this isn't the first interpolation and there was no space between them,
+    // don't add extra space
+    if (offset > 0 && str[offset - 1] === '}') {
+      return formatted;
+    }
+
+    return formatted;
   });
 
-  return result;
+  return indent + result;
 }
 
 /**
@@ -461,19 +469,49 @@ const angularPlugin = {
     angular: {
       ...htmlParsers.html,
       astFormat: "angular-ast",
+      parse(text, parsers, options) {
+        // First preserve the DOCTYPE
+        const doctypeMatch = text.match(/^<!DOCTYPE[^>]*>/i);
+        const doctype = doctypeMatch ? doctypeMatch[0] : '';
+
+        // Parse the HTML
+        const ast = htmlParsers.html.parse(text, parsers, options);
+
+        // Add the DOCTYPE to the AST root node
+        if (doctypeMatch) {
+          ast.doctype = doctype;
+        }
+
+        return ast;
+      }
     },
     html: {
       ...htmlParsers.html,
-      astFormat: "angular-ast"
+      astFormat: "angular-ast",
+      parse(text, parsers, options) {
+        // Same DOCTYPE preservation for HTML parser
+        const doctypeMatch = text.match(/^<!DOCTYPE[^>]*>/i);
+        const doctype = doctypeMatch ? doctypeMatch[0] : '';
+
+        const ast = htmlParsers.html.parse(text, parsers, options);
+
+        if (doctypeMatch) {
+          ast.doctype = doctype;
+        }
+
+        return ast;
+      }
     }
   },
   printers: {
     "angular-ast": {
-      print: function (path, options, print) {
+      print(path, options, print) {
         const node = path.getValue();
-        return node.type === 'root'
-          ? formatRoot(node.children)
-          : formatElement(node);
+        if (node.type === 'root') {
+          const doctype = node.doctype ? `${node.doctype}\n` : '';
+          return doctype + formatRoot(node.children);
+        }
+        return formatElement(node);
       },
     },
   },
